@@ -51,8 +51,8 @@ pipeline {
 
           stage("Docker push") {
                steps {
-                     echo "docker push leszko/calculator:${env.BUILD_NUMBER}"
-                    sh "docker push leszko/calculator:${env.BUILD_NUMBER}"
+                     echo "docker push prabhuks/kaspr01:${env.BUILD_NUMBER}"
+                    sh "docker push prabhuks/kaspr01:${env.BUILD_NUMBER}"
                    // sh "docker push leszko/calculator"
                }
           }
