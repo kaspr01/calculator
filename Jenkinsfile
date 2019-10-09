@@ -65,9 +65,9 @@ pipeline {
           
           stage("Deploy to staging") {
                steps {
-                    sh "kubectl config use-context staging"
-                    sh "kubectl apply -f hazelcast.yaml"
-                    sh "kubectl apply -f calculator.yaml"
+                    sh "/usr/local/bin/kubectl config use-context staging"
+                    sh "/usr/local/bin/kubectl apply -f hazelcast.yaml"
+                    sh "/usr/local/bin/kubectl apply -f calculator.yaml"
                }
           }
 
