@@ -69,7 +69,7 @@ pipeline {
                     //sh "/usr/local/bin/kubectl config use-context staging"
                     //sh "/usr/local/bin/kubectl apply -f hazelcast.yaml"
                     //sh "/usr/local/bin/kubectl apply -f calculator.yaml"
-                     sh "docker-compose up -d"
+                     sh "/usr/local/bin/docker-compose up -d"
                }
           }
 
