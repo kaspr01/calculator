@@ -91,7 +91,7 @@ pipeline {
                   sh "chmod +x smoke-test.sh && ./smoke-test.sh"
               }
           }
-     }
+   //  }
      
      post {
         always {
@@ -104,7 +104,7 @@ pipeline {
             echo 'This will run only if failed'
                mail bcc: 'prabhuprabhuks@yahoo.com', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "prabhuprabhuks@yahoo.com";  
          }  
- }
- //}
-  // }
+     }
+  }
+}
 //}
