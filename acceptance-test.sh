@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-
-NODE_IP=$(kubectl get nodes -o jsonpath='{ $.items[0].status.addresses[?(@.type=="ExternalIP")].address }')
-NODE_PORT=$(kubectl get svc calculator-service -o=jsonpath='{.spec.ports[0].nodePort}')
-./gradlew acceptanceTest -Dcalculator.url=http://${NODE_IP}:${NODE_PORT}
+  
+#!/bin/bash
+CALCULATOR_PORT=$(docker-compose port calculator 8081 | cut -d: -f2)
+test $(curl localhost:$CALCULATOR_PORT/sum?a=1\&b=2) -eq 3
