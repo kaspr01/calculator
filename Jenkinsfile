@@ -65,6 +65,7 @@ pipeline {
           
           stage("Deploy to staging") {
                steps {
+                    sh "/usr/local/bin/kubectl config set-context staging --namespace=staging-namespace --cluster=kubernetes --user=kubernetes-admin"
                     sh "/usr/local/bin/kubectl config use-context staging"
                     sh "/usr/local/bin/kubectl apply -f hazelcast.yaml"
                     sh "/usr/local/bin/kubectl apply -f calculator.yaml"
