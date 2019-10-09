@@ -34,7 +34,8 @@ pipeline {
           stage("Docker build") {
                steps {
                     //sh "docker build -t leszko/calculator:${BUILD_TIMESTAMP} ."
-                    sh "docker build -t leszko/calculator ."
+                    echo "docker build -t leszko/calculator:${BUILD_TIMESTAMP}  ."
+                    sh "docker build -t leszko/calculator:${BUILD_TIMESTAMP}  ."
                }
           }
 
@@ -50,6 +51,7 @@ pipeline {
 
           stage("Docker push") {
                steps {
+                     echo "docker push leszko/calculator:${BUILD_TIMESTAMP}"
                     sh "docker push leszko/calculator:${BUILD_TIMESTAMP}"
                    // sh "docker push leszko/calculator"
                }
@@ -90,4 +92,20 @@ pipeline {
               }
           }
      }
+     
+     post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+               mail bcc: 'prabhuprabhuks@yahoo.com', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "prabhuprabhuks@yahoo.com";  
+         }  
+}
+}
+
+        }
 }
