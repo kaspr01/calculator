@@ -40,17 +40,18 @@ pipeline {
 
           stage("Docker login") {
                steps {
-                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
-                               usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                         sh "docker login --username $USERNAME --password $PASSWORD"
+                    //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
+                      //         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                        // sh "docker login --username $USERNAME --password $PASSWORD"
+                    sh "docker login -u prabhuks -p Docker12!"
                     }
                }
           }
 
           stage("Docker push") {
                steps {
-                   // sh "docker push leszko/calculator:${BUILD_TIMESTAMP}"
-                    sh "docker push leszko/calculator"
+                    sh "docker push leszko/calculator:${BUILD_TIMESTAMP}"
+                   // sh "docker push leszko/calculator"
                }
           }
 
@@ -75,13 +76,13 @@ pipeline {
                }
           }
 
-          stage("Release") {
-               steps {
-                    sh "kubectl config use-context production"
-                    sh "kubectl apply -f hazelcast.yaml"
-                    sh "kubectl apply -f calculator.yaml"
-               }
-          }
+          //stage("Release") {
+            //   steps {
+              //      sh "kubectl config use-context production"
+                //    sh "kubectl apply -f hazelcast.yaml"
+                  //  sh "kubectl apply -f calculator.yaml"
+               //}
+          //}
           stage("Smoke test") {
               steps {
                   sleep 60
