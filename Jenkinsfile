@@ -91,7 +91,7 @@ pipeline {
                   sh "chmod +x smoke-test.sh && ./smoke-test.sh"
               }
           }
-   //  }
+     }
      
      post {
         always {
@@ -106,5 +106,5 @@ pipeline {
          }  
      }
   }
-}
+//}
 //}
