@@ -59,17 +59,16 @@ pipeline {
 
           stage("Update version") {
                steps {
-                    //sh "sed  -i 's/{{VERSION}}/${env.BUILD_NUMBER}/g' calculator.yaml"
-                    sh "sed  -i 's/{{VERSION}}/${env.BUILD_NUMBER}/g' docker-compose.yml"
-               }
+                    sh "sed  -i 's/{{VERSION}}/${env.BUILD_NUMBER}/g' calculator.yaml"
+                 }
           }
           
           stage("Deploy to staging") {
                steps {
-                    //sh "/usr/local/bin/kubectl config use-context staging"
-                    //sh "/usr/local/bin/kubectl apply -f hazelcast.yaml"
-                    //sh "/usr/local/bin/kubectl apply -f calculator.yaml"
-                     sh "/usr/local/bin/docker-compose up -d"
+                    sh "/usr/local/bin/kubectl config use-context staging"
+                    sh "/usr/local/bin/kubectl apply -f hazelcast.yaml"
+                    sh "/usr/local/bin/kubectl apply -f calculator.yaml"
+                    
                }
           }
 
