@@ -59,7 +59,8 @@ pipeline {
 
           stage("Update version") {
                steps {
-                    sh "sed  -i 's/{{VERSION}}/${env.BUILD_NUMBER}/g' calculator.yaml"
+                    //sh "sed  -i 's/{{VERSION}}/${env.BUILD_NUMBER}/g' calculator.yaml"
+                    sh "sed  -i 's/{{VERSION}}/${env.BUILD_NUMBER}/g' docker-compose.yml"
                }
           }
           
